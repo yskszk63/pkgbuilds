@@ -1,0 +1,18 @@
+pkgbase = sso-mib
+	pkgdesc = C library to interact with a locally running microsoft-identity-broker to get various authentication tokens via DBus.
+	pkgver = 0.8.0
+	pkgrel = 1
+	url = https://siemens.github.io/sso-mib/
+	arch = x86_64
+	license = LGPL2
+	makedepends = meson
+	depends = glib2
+	depends = json-glib
+	depends = dbus
+	depends = util-linux-libs
+	depends = libjwt
+	optdepends = libjwt: sso-mib-tool
+	source = https://github.com/siemens/sso-mib/archive/refs/tags/v0.8.0.tar.gz
+	sha256sums = 97bd90c968104dbeec4cccbd63305a4512b5c295fc9885bd94ad2066a87f522e
+
+pkgname = sso-mib

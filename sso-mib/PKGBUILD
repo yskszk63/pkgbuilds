@@ -1,0 +1,34 @@
+pkgname=sso-mib
+pkgver=0.8.0
+pkgrel=1
+pkgdesc='C library to interact with a locally running microsoft-identity-broker to get various authentication tokens via DBus. '
+arch=(x86_64)
+url=https://siemens.github.io/sso-mib/
+license=(LGPL2)
+
+depends=(
+  glib2
+  json-glib
+  dbus
+  util-linux-libs
+  libjwt
+)
+optdepends=(
+  'libjwt: sso-mib-tool'
+)
+makedepends=(meson)
+source=(https://github.com/siemens/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
+sha256sums=('97bd90c968104dbeec4cccbd63305a4512b5c295fc9885bd94ad2066a87f522e')
+
+build() {
+  arch-meson $pkgname-$pkgver build
+  meson compile -C build
+}
+
+check() {
+  meson test -C build --print-errorlogs
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+}
