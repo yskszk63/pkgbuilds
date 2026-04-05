@@ -11,12 +11,23 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: pacman -Syu --needed --noconfirm base-devel git
+
       - run: useradd -m builder
       - run: "echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
-      - run: |
+
+      - name: libjwt
+        run: |
           su - builder << EOF
           git clone https://aur.archlinux.org/libjwt.git /tmp/libjwt
           cd /tmp/libjwt
           makepkg -si --noconfirm
           ls ./libjwt-*.pkg.tar.zst
+          EOF
+
+      - name: sso-mib
+        run: |
+          su - builder << EOF
+          cd sso-mib
+          makepkg -si --noconfirm
+          ls ./sso-mib-*.pkg.tar.zst
           EOF
