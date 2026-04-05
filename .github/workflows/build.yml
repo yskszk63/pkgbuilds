@@ -10,7 +10,7 @@ jobs:
       image: archlinux:latest
     steps:
       - uses: actions/checkout@v6
-      - run: pacman -Syu --needed --noconfirm base-devel
+      - run: pacman -Syu --needed --noconfirm base-devel git
       - run: useradd -m builder
       - run: "echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
       - run: |
