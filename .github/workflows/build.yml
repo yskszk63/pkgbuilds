@@ -14,8 +14,9 @@ jobs:
       - run: useradd -m builder
       - run: "echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
       - run: |
-          su - builder
+          su - builder << EOF
           cd $(mktemp -d)
           git clone https://aur.archlinux.org/libjwt.git
           makepkg -si
           ls ./libjwt-*.pkg.tar.zst
+          EOF
