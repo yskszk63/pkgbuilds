@@ -1,4 +1,5 @@
-# Maintainer: Sergej Pupykin <pupykin.s+arch@gmail.com>
+# Maintainer: Yusuke Suzuki <yskszk63@gmail.com>
+# Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
 # Contributor: David Runge <dvzrv@archlinux.org>
 # Contributor: Stijn Segers <francesco dot borromini at gmail dot com>
 
@@ -8,7 +9,7 @@ pkgver=3.24.2
 _libver=${pkgver/.*/}
 pkgrel=1
 epoch=2
-pkgdesc="Free implementation of the Remote Desktop Protocol (RDP)"
+pkgdesc="FreeRDP built with WITH_SSO_MIB"
 arch=(x86_64)
 url="https://www.freerdp.com/"
 license=(Apache-2.0)
@@ -34,6 +35,7 @@ depends=(
   sdl3
   sdl3_ttf
   wayland
+  sso-mib
 )
 makedepends=(
   alsa-lib
@@ -54,8 +56,6 @@ makedepends=(
   pkcs11-helper
   xorgproto
   zlib
-  meson
-  glib2-devel
 )
 provides=(
   libfreerdp-client$_libver.so
@@ -66,6 +66,7 @@ provides=(
   libfreerdp$_libver.so
   libwinpr-tools$_libver.so
   libwinpr$_libver.so
+  freerdp
 )
 source=(
   "git+https://github.com/$_pkgname/$_pkgname#tag=$pkgver"
