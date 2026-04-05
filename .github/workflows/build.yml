@@ -16,7 +16,7 @@ jobs:
       - run: |
           su - builder << EOF
           cd $(mktemp -d)
-          git clone https://aur.archlinux.org/libjwt.git
+          git clone https://aur.archlinux.org/libjwt.git .
           makepkg -si
           ls ./libjwt-*.pkg.tar.zst
           EOF
