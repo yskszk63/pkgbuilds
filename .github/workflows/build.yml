@@ -55,8 +55,9 @@ jobs:
           ls ./rdpmib-*.pkg.tar.zst
           EOF
 
-      - name: collect
+      - name: prepare
         run: |
-          echo $(FILES=find /tmp/libjwt $WORKDIR -name '*.pkg.tar.zst' | xargs) | tee -a $GITHUB_ENV
+          echo FILES=$(find /tmp/libjwt $WORKDIR -name '*.pkg.tar.zst' | xargs) | tee -a $GITHUB_ENV
+          echo RELEASE_NAME=$(date -Iminutes) | tee -a $GITHUB_ENV
 
-      - run: echo $FILES
+      - run: echo $RELEASE_NAME $FILES
