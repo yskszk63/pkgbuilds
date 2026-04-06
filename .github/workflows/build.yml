@@ -20,7 +20,8 @@ jobs:
 
       - name: libjwt
         run: |
-          su - builder << EOF
+          su -s/bin/bash - builder << EOF
+          set -e
           git clone https://aur.archlinux.org/libjwt.git /tmp/libjwt
           cd /tmp/libjwt
           makepkg -si --noconfirm
@@ -29,7 +30,8 @@ jobs:
 
       - name: sso-mib
         run: |
-          su - builder << EOF
+          su -s/bin/bash - builder << EOF
+          set -e
           cd $WORKDIR/sso-mib
           makepkg -si --noconfirm
           ls ./sso-mib-*.pkg.tar.zst
@@ -37,7 +39,8 @@ jobs:
 
       - name: freerdp-sso-mib
         run: |
-          su - builder << EOF
+          su -s/bin/bash - builder << EOF
+          set -e
           cd $WORKDIR/freerdp-sso-mib
           makepkg -si --noconfirm
           ls ./freerdp-sso-mib-*.pkg.tar.zst
@@ -45,8 +48,15 @@ jobs:
 
       - name: rdpmib
         run: |
-          su - builder << EOF
+          su -s/bin/bash - builder << EOF
+          set -e
           cd $WORKDIR/rdpmib
           makepkg -si --noconfirm
           ls ./rdpmib-*.pkg.tar.zst
           EOF
+
+      - name: collect
+        run: |
+          echo $(FILES=find /tmp/libjwt $WORKDIR -name '*.pkg.tar.zst' | xargs) | tee -a $GITHUB_ENV
+
+      - run: echo $FILES
