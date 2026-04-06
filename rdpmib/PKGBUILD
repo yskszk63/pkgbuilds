@@ -8,7 +8,10 @@ arch=(x86_64)
 url=https://github.com/yskszk63/rdpmib
 license=(MIT)
 
-depends=(dbus)
+depends=(
+  dbus
+  gtk3
+)
 makedepends=(cargo)
 source=("$url/archive/v$pkgver/$pkgname-$pkgver.tar.gz")
 sha256sums=('754447b2b5a9d5ad45b15e0c10469a10bde556522ce92956f4c36d1e06812d83')
