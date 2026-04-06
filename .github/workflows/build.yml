@@ -1,7 +1,10 @@
 name: build
 
 on:
-  push: # TODO for test
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -61,3 +64,10 @@ jobs:
           echo RELEASE_NAME=$(date -Iminutes) | tee -a $GITHUB_ENV
 
       - run: echo $RELEASE_NAME $FILES
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          name: ${{ env.RELEASE_NAME }}
+          tag_name: ${{ env.RELEASE_NAME }}
+          files: ${{ env.FILES }}
