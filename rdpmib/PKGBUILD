@@ -11,6 +11,7 @@ license=(MIT)
 depends=(
   dbus
   gtk3
+  webkit2gtk-4.1
 )
 makedepends=(cargo)
 source=("$url/archive/v$pkgver/$pkgname-$pkgver.tar.gz")
