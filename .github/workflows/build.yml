@@ -60,7 +60,8 @@ jobs:
 
       - name: prepare
         run: |
-          echo FILES=$(find /tmp/libjwt $WORKDIR -name '*.pkg.tar.zst' | xargs) | tee -a $GITHUB_ENV
+          mkdir assets
+          find /tmp/libjwt $WORKDIR -name '*.pkg.tar.zst' | xargs install -t assets
           echo RELEASE_NAME=$(date -Iminutes) | tee -a $GITHUB_ENV
 
       - run: echo $RELEASE_NAME $FILES
@@ -70,4 +71,4 @@ jobs:
           draft: true
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.RELEASE_NAME }}
-          files: ${{ env.FILES }}
+          files: 'assets/*.pkg.tar.zst'
