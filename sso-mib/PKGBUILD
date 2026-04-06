@@ -18,7 +18,10 @@ depends=(
 optdepends=(
   'libjwt: sso-mib-tool'
 )
-makedepends=(meson)
+makedepends=(
+  meson
+  glib2-devel
+)
 source=(https://github.com/siemens/$pkgname/archive/refs/tags/v$pkgver.tar.gz)
 sha256sums=('97bd90c968104dbeec4cccbd63305a4512b5c295fc9885bd94ad2066a87f522e')
 
